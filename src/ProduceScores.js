@@ -1,19 +1,16 @@
 import React from "react";
 
-// Note that the array is sorted in place
-function sortByScores(a, b) {
-  return b.s - a.s;
-}
-
 const ProduceScores = (props) => {
-  const listCountries = props.theScores.map((eachCountry, index) => {
-    const copiedScores = [...eachCountry.scores]; // make a copy of the scores for each country
-    copiedScores.sort(sortByScores); // sort in descending order
+  // let sortType = props.JSKsortType;
+  const listCountries = props.listOfCountries.map((eachCountry, index) => {
     // render the result
+    console.log(props.listOfCountries);
+    console.log(eachCountry);
+    console.log(eachCountry.countryName);
     return (
       <div key={index} className="country">
-        {countryName(eachCountry)}
-        {renderTheScores(copiedScores)}
+        {countryName(eachCountry.countryName)}
+        {renderTheScores(eachCountry.scores)}
       </div>
     );
   });
@@ -21,13 +18,15 @@ const ProduceScores = (props) => {
 };
 
 // The Country Heading
-function countryName(eachCountry) {
+function countryName(theCountryName) {
+  console.log(theCountryName);
   return (
-    <h2 className="font-link bluepen">{`HIGH SCORES: ${eachCountry.name}`}</h2>
+    <h2 className="font-link bluepen">{`HIGH SCORES: ${theCountryName}`}</h2>
   );
 }
 
 function renderTheScores(scorers) {
+  console.log(scorers);
   return (
     <div className="thescores">
       <div className="row-flex2">
@@ -42,7 +41,7 @@ function renderEachName(scorers) {
   // Produce a list of Names
   const listNames = scorers.map((element, index) => (
     <p key={index} className="font-link rightblack">
-      {element.n}
+      {element.scorerName}
     </p>
   ));
 
@@ -54,7 +53,7 @@ function renderEachScore(scorers) {
   // Produce a list of Scores
   const listScores = scorers.map((element, index) => (
     <p key={index} className="font-link rightbrown">
-      {element.s}
+      {element.scorerScore}
     </p>
   ));
 
